@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ma Documentation</title>
+  <style>
+    :root {
+      --bg: #0b0b0b;
+      --panel: #111;
+      --text: #eaeaea;
+      --muted: #9aa0a6;
+      --accent: #4ade80;
+      --code: #1a1a1a;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      height: 100vh;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 260px;
+      background: var(--panel);
+      padding: 20px;
+      overflow-y: auto;
+      border-right: 1px solid #1f1f1f;
+    }
+
+    .sidebar h2 {
+      font-size: 14px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 20px 0 8px;
+    }
+
+    .sidebar a {
+      display: block;
+      color: var(--text);
+      text-decoration: none;
+      padding: 8px 10px;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    .sidebar a:hover {
+      background: #1a1a1a;
+    }
+
+    /* Content */
+    .content {
+      flex: 1;
+      padding: 40px;
+      overflow-y: auto;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      margin-top: 40px;
+      font-size: 24px;
+    }
+
+    p {
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 800px;
+    }
+
+    pre {
+      background: var(--code);
+      padding: 16px;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin-top: 16px;
+    }
+
+    code {
+      color: #93c5fd;
+      font-family: Consolas, monospace;
+      font-size: 14px;
+    }
+
+    .tip {
+      margin-top: 20px;
+      background: #052e16;
+      border-left: 4px solid var(--accent);
+      padding: 16px;
+      border-radius: 6px;
+      color: #d1fae5;
+      max-width: 800px;
+    }
+  </style>
+</head>
+<body>
+
+  <aside class="sidebar">
+    <h2>CONFIGURATION</h2>
+    <a href="#library">Library</a>
+  </aside>
+
+  <main class="content">
+    <section id="library">
+      <h1>Library</h1>
+      
+
+      <h2 style="color:#ffffff; font-size:28px; margin-top:40px;">Loading the Rayfield Library</h2>
+
+      <pre><code>
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/astral-123/Library/refs/heads/main/Library.lua"))()</code></pre>
+
+      <h2 style="color:#ffffff; font-size:28px; margin-top:40px;">Creating a Window</h2>
+
+      <pre><code>
+local Window = Library:CreateWindow({
+    Name = "Eclipse Hub",
+    Subtitle = "Hub",
+    Icon = "rbxassetid://10723407389"
+})</code></pre>
+
+      <h2 style="color:#ffffff; font-size:28px; margin-top:40px;">Creating a Tab</h2>
+
+      <pre><code>
+local Tab = Window:CreateTab({
+    Name = "Exemple Window",
+    Icon = "rbxassetid://10734950309"
+})</code></pre>
+
+      <h2 style="color:#ffffff; font-size:28px; margin-top:40px;">Creating a Section</h2>
+
+      <pre><code>
+Tab:CreateSection("Exemple Section")</code></pre>
+
+      <h2 style="color:#ffffff; font-size:28px; margin-top:40px;">Notifying the user</h2>
+
+      <pre><code>
+Window:Notify({
+    Title = "Notification Title",
+    Content = "Notification Content",
+    Duration = 3,
+    Icon = "rbxassetid://10723407389"
+})</code></pre>
+
+      <h2 style="color:#ffffff; font-size:28px; margin-top:40px;">Creating a Button</h2>
+
+      <pre><code>
+Tab:CreateButton({
+    Name = "Button Exemple",
+    Callback = function()
+   	-- The function that takes place when the button is pressed
+    end
+})</code></pre>
+
+      <h2 style="color:#ffffff; font-size:28px; margin-top:40px;">Creating a Toggle</h2>
+
+      <pre><code>
+Tab:CreateToggle({
+    Name = "Toggle Example",
+    Default = false,
+    Callback = function(value)
+   	-- The function that takes place when the toggle is pressed
+   	-- The variable (Value) is a boolean on whether the toggle is true or false
+    end
+})</code></pre>
+
+      <h2 style="color:#ffffff; font-size:28px; margin-top:40px;">Creating a CheckBox</h2>
+
+      <pre><code>
+Tab:CreateCheckbox({
+    Name = "Exemple CheckBox",
+    Default = false,
+    Callback = function(value)
+   	-- The function that takes place when the toggle is pressed
+   	-- The variable (Value) is a boolean on whether the toggle is true or false
+    end
+})</code></pre>
+
+      <h2 style="color:#ffffff; font-size:28px; margin-top:40px;">Creating a Slider</h2>
+
+      <pre><code>
+local Slider = Tab:CreateSlider({
+    Name = "Slider Exemple",
+    Min = 16,
+    Max = 200,
+    Default = 16,
+    Increment = 1,
+    Callback = function(value)
+   	-- The function that takes place when the slider changes
+   	-- The variable (Value) is a number which correlates to the value the slider is currently at
+    end
+})</code></pre>
+
+      <h2 style="color:#ffffff; font-size:28px; margin-top:40px;">Creating an Adaptive Input</h2>
+
+      <pre><code>
+Tab:CreateInput({
+    Name = "Input Example",
+    Default = "",
+    Placeholder = "Input Placeholder",
+    Callback = function(text)
+   	-- The function that takes place when the input is changed
+   	-- The variable (Text) is a string for the value in the text box
+    end
+})</code></pre>
+
+      <h2 style="color:#ffffff; font-size:28px; margin-top:40px;">Creating a Dropdown</h2>
+
+      <pre><code>
+Tab:CreateDropdown({
+    Name = "Dropdown Example",
+    Options = {"lOption 1", "Option 2"},
+    Default = "Disabled",
+    Callback = function(option)
+   	-- The function that takes place when the selected option is changed
+   	-- The variable (Options) is a table of strings for the current selected options
+    end
+})</code></pre>
+
+      <h2 style="color:#ffffff; font-size:28px; margin-top:40px;">Creating a Labe</h2>
+
+      <pre><code>
+Tab:CreateLabel("Label Example")</code></pre>
+
+      <h2 style="color:#ffffff; font-size:28px; margin-top:40px;">Creating a Paragraph</h2>
+
+      <pre><code>
+Tab:CreateParagraph("Paragraph Example", "Paragraph Example")</code></pre>
+
+    </section>
+  </main>
+
+</body>
+</html>
