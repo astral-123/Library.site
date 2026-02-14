@@ -1,9 +1,13 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ma Documentation</title>
+  <title>Nebula Documentation</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --bg: #0b0b0b;
@@ -15,6 +19,7 @@
     }
 
     * { box-sizing: border-box; }
+
     body {
       margin: 0;
       font-family: Inter, system-ui, Arial, sans-serif;
@@ -24,7 +29,6 @@
       height: 100vh;
     }
 
-    /* Sidebar */
     .sidebar {
       width: 260px;
       background: var(--panel);
@@ -53,126 +57,139 @@
       background: #1a1a1a;
     }
 
-    /* Content */
     .content {
       flex: 1;
       padding: 40px;
       overflow-y: auto;
     }
 
-    h1 {
-      font-size: 36px;
-      margin-bottom: 10px;
-    }
-
-    h2 {
-      margin-top: 40px;
-      font-size: 24px;
-    }
-
-    p {
-      color: var(--muted);
-      line-height: 1.6;
-      max-width: 800px;
-    }
+    h1 { font-size: 36px; margin-bottom: 10px; }
+    h2 { margin-top: 40px; font-size: 24px; }
 
     pre {
+      position: relative;
       background: var(--code);
       padding: 16px;
-      border-radius: 8px;
+      border-radius: 10px;
       overflow-x: auto;
       margin-top: 16px;
+      border: 1px solid #262626;
     }
 
     code {
       color: #93c5fd;
-      font-family: Consolas, monospace;
-      font-size: 14px;
+      font-family: "JetBrains Mono", Consolas, monospace;
+      font-size: 13px;
+      white-space: pre;
     }
 
-    .tip {
-      margin-top: 20px;
-      background: #052e16;
-      border-left: 4px solid var(--accent);
-      padding: 16px;
-      border-radius: 6px;
-      color: #d1fae5;
-      max-width: 800px;
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #1f1f1f;
+      color: #eaeaea;
+      border: 1px solid #2a2a2a;
+      padding: 6px 11px;
+      font-size: 12px;
+      border-radius: 7px;
+      cursor: pointer;
+      transition: 0.18s;
+    }
+
+    .copy-btn:hover {
+      background: #2a2a2a;
+    }
+
+    .copy-btn.copied {
+      background: #14532d;
+      border-color: #16a34a;
+      color: #bbf7d0;
     }
   </style>
+
 </head>
+
 <body>
 
-  <aside class="sidebar">
-    <h2>CONFIGURATION</h2>
-    <a href="#library">Library</a>
-  </aside>
+<aside class="sidebar">
+  <h2>CONFIGURATION</h2>
+  <a href="#library">Library</a>
+</aside>
 
-  <main class="content">
-    <section id="library">
-      <h1>Library</h1>
-      
+<main class="content">
+<section id="library">
 
-      <h2 style="color:#ffffff; font-size:28px; margin-top:40px;">Loading the Nebula Library</h2>
+<h1>Library</h1>
 
-      <pre><code>local NebulaUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/astral-123/Library/refs/heads/main/Library.lua"))()</code></pre>
+<h2>Loading the Nebula Library</h2>
+<pre><code>local NebulaUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/astral-123/Library/refs/heads/main/Library.lua"))()</code></pre>
 
-      <h2 style="color:#ffffff; font-size:28px; margin-top:40px;">Creating a Window</h2>
-
-      <pre><code>local Window = NebulaUI:CreateWindow({
+<h2>Creating a Window</h2>
+<pre><code>local Window = NebulaUI:CreateWindow({
     Name = "Nebula Hub",
     ToggleKey = Enum.KeyCode.V,
-    KeySystem = false,      -- Active le système de clé
-    Key = "NebulaHub2024",  -- La clé correcte
-    Resizable = true       -- Active le redimensionnement
+    KeySystem = false,
+    Key = "NebulaHub2024",
+    Resizable = true
 })</code></pre>
 
-      <h2 style="color:#ffffff; font-size:28px; margin-top:40px;">Creating a Tab</h2>
+<h2>Creating a Tab</h2>
+<pre><code>local Main = Window:CreateTab("Main")</code></pre>
 
-      <pre><code>local Main = Window:CreateTab("Main")</code></pre>
+<h2>Notifying the user</h2>
+<pre><code>Window:Notification({
+    Title = "Welcome!",
+    Text = "Nebula Hub loaded!",
+    Duration = 3
+})</code></pre>
 
-      <h2 style="color:#ffffff; font-size:28px; margin-top:40px;">Creating a Button</h2>
-
-      <pre><code>local LeftSection = Main:AddSection("Main Functions", "left")
+<h2>Creating a Button</h2>
+<pre><code>local LeftSection = Main:AddSection("Main Functions", "left")
 
 LeftSection:AddButton({
-    Name = "Start Farming",
-    Callback = function()
-        print("Farming started!")
-    end
+Name = "Start Farming",
+Callback = function()
+print("Farming started!")
+end
 })</code></pre>
 
-      <h2 style="color:#ffffff; font-size:28px; margin-top:40px;">Creating a Toggle</h2>
-
-      <pre><code>local LeftSection = Main:AddSection("Main Functions", "left")
+<h2>Creating a Toggle</h2>
+<pre><code>local LeftSection = Main:AddSection("Main Functions", "left")
 
 LeftSection:AddToggle({
-    Name = "Auto Farm",
-    Default = false,
-    Callback = function(value)
-        print("Auto Farm:", value)
-    end
+Name = "Auto Farm",
+Default = false,
+Callback = function(value)
+print("Auto Farm:", value)
+end
 })</code></pre>
 
-      <h2 style="color:#ffffff; font-size:28px; margin-top:40px;">Creating a Slider</h2>
-
-      <pre><code>local RightSection = Main:AddSection("Settings", "right")
+<h2>Creating a Slider</h2>
+<pre><code>local RightSection = Main:AddSection("Settings", "right")
 
 RightSection:AddSlider({
-    Name = "Speed",
-    Min = 100,
-    Max = 500,
-    Default = 300,
-    Callback = function(value)
-        print("Speed:", value)
+Name = "Speed",
+Min = 100,
+Max = 500,
+Default = 300,
+Callback = function(value)
+print("Speed:", value)
+end
+})</code></pre>
+
+<h2>Creating a Input</h2>
+<pre><code>MainRight:AddInput({
+    Name = "Input",
+    PlaceholderText = "Type here...",
+    Flag = "Input1",
+    Callback = function(text)
+        print("Input:", text)
     end
 })</code></pre>
 
-      <h2 style="color:#ffffff; font-size:28px; margin-top:40px;">Creating a Dropdown</h2>
-
-      <pre><code>local RightSection = Main:AddSection("Settings", "right")
-
-RightSection:AddDropdown({
+<h2>Creating a Dropdown</h2>
+<pre><code>RightSection:AddDropdown({
     Name = "Weapon",
     Options = {"Melee", "Sword", "Gun"},
     Default = "Melee",
@@ -181,24 +198,49 @@ RightSection:AddDropdown({
     end
 })</code></pre>
 
-      <h2 style="color:#ffffff; font-size:28px; margin-top:40px;">Creating a TextBox</h2>
-
-      <pre><code>local RightSection = Main:AddSection("Settings", "right")
-
-RightSection:AddTextBox({
+<h2>Creating a TextBox</h2>
+<pre><code>RightSection:AddTextBox({
     Name = "Player Name",
     Placeholder = "Enter player name...",
     Default = "",
     Callback = function(text, enterPressed)
         print("Player Name:", text)
-        if enterPressed then
-            print("Enter was pressed!")
-        end
     end
 })</code></pre>
 
-    </section>
-  </main>
+<h2>Creating a Setting Tab</h2>
+<pre><code>local Settings = Window:CreateTab("Settings")</code></pre>
+
+</section>
+</main>
+
+<script>
+document.querySelectorAll("pre").forEach((pre) => {
+
+  const button = document.createElement("button");
+  button.innerText = "Copy";
+  button.className = "copy-btn";
+
+  pre.appendChild(button);
+
+  const code = pre.querySelector("code");
+
+  button.addEventListener("click", async () => {
+      const text = code.innerText;
+
+      await navigator.clipboard.writeText(text);
+
+      button.innerText = "Copied!";
+      button.classList.add("copied");
+
+      setTimeout(() => {
+          button.innerText = "Copy";
+          button.classList.remove("copied");
+      }, 1500);
+  });
+
+});
+</script>
 
 </body>
 </html>
