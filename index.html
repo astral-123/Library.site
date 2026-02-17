@@ -179,7 +179,9 @@ end
 })</code></pre>
 
 <h2>Creating a Input</h2>
-<pre><code>MainRight:AddInput({
+<pre><code>local Mainleft = Main:AddSection("Input", "left")
+
+Mainleft:AddInput({
     Name = "Input",
     PlaceholderText = "Type here...",
     Flag = "Input1",
@@ -189,12 +191,19 @@ end
 })</code></pre>
 
 <h2>Creating a Dropdown</h2>
-<pre><code>RightSection:AddInput({
-    Name = "Input",
-    PlaceholderText = "Type here...",
-    Flag = "Input1",
-    Callback = function(text)
-        print("Input:", text)
+<pre><code>local MainRight = Main:AddSection("Dropdown", "right")
+
+MainRight:AddDropdown({
+    Name = "Target Part",
+    Options = {"Head", "UpperTorso", "LowerTorso", "HumanoidRootPart", "Random"},
+    Default = "Head",
+    Callback = function(Option)
+        settings.aimPart = Option
+        Window:Notification({
+            Title = "Target Part",
+            Text = "Target: " .. Option,
+            Duration = 2
+        })
     end
 })</code></pre>
 
