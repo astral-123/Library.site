@@ -134,15 +134,15 @@
     Resizable = true
 })</code></pre>
 
-<h2>Creating a Tab</h2>
-<pre><code>local Main = Window:CreateTab("Main")</code></pre>
-
 <h2>Notifying the user</h2>
 <pre><code>Window:Notification({
     Title = "Welcome!",
     Text = "Nebula Hub loaded!",
     Duration = 3
 })</code></pre>
+
+<h2>Creating a Tab</h2>
+<pre><code>local Main = Window:CreateTab("Main")</code></pre>
 
 <h2>Creating a Button</h2>
 <pre><code>local LeftSection = Main:AddSection("Main Functions", "left")
@@ -189,22 +189,12 @@ end
 })</code></pre>
 
 <h2>Creating a Dropdown</h2>
-<pre><code>RightSection:AddDropdown({
-    Name = "Weapon",
-    Options = {"Melee", "Sword", "Gun"},
-    Default = "Melee",
-    Callback = function(value)
-        print("Weapon:", value)
-    end
-})</code></pre>
-
-<h2>Creating a TextBox</h2>
-<pre><code>RightSection:AddTextBox({
-    Name = "Player Name",
-    Placeholder = "Enter player name...",
-    Default = "",
-    Callback = function(text, enterPressed)
-        print("Player Name:", text)
+<pre><code>RightSection:AddInput({
+    Name = "Input",
+    PlaceholderText = "Type here...",
+    Flag = "Input1",
+    Callback = function(text)
+        print("Input:", text)
     end
 })</code></pre>
 
